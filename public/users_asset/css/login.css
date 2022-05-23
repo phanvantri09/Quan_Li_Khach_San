@@ -1,0 +1,51 @@
+body{
+    background-image: url("../img/background_login.jpg");
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#form{
+    margin-top: 40px;
+    background-color: aliceblue;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+}
+#form h2{
+    text-align: center;
+}
+.register{
+    margin-top: 5px;
+    text-align: center;
+}
+@media only screen and (max-width: 600px) {
+    body {height: 100vh;}
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    body {height: 100vh;}
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    body {height: 100vh;}
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    body {height: 100vh;}
+  } 
+  @media only screen and (min-width: 1200px) {
+    body {height: 100vh;}
+  } 
+

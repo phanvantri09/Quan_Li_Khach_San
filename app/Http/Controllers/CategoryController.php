@@ -21,7 +21,7 @@ class CategoryController extends Controller
         $category = new CategoryModel();
         $category->name = $request->name;
         $category->save();
-        return redirect('admin/category/list');
+        return redirect('admin/category/list')->with('thongbao','Thêm thành công');
     }
     public function getEdit($id){
         $category = CategoryModel::find($id);
@@ -38,6 +38,6 @@ class CategoryController extends Controller
     {
     	$category = CategoryModel::find($id);
     	$category->delete();
-    	return redirect('admin/category/list');
+    	return redirect('admin/category/list')->with('thongbao','Xóa thành công');
     }
 }

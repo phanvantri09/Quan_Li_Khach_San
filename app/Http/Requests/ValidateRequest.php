@@ -24,7 +24,9 @@ class ValidateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:category|max:255',
+            'name' => 'required|unique:category|unique:users|max:255',
+            'email' => 'required|email|unique:users',
+    		'password' => 'required|min:6|max:32',
         ];
     }
     public function messages()
@@ -32,7 +34,13 @@ class ValidateRequest extends FormRequest
         return [
             'name.required' =>'Bạn chưa nhập tên',
             'name.unique' =>'Tên đã tồn tại',
-            'name.max' =>'Tên có tối đâ 255 kí tự'
+            'name.max' =>'Tên có tối đâ 255 kí tự',
+            'email.required' => 'Bạn chưa nhập email',
+    		'email.email' => 'Bạn chưa nhập đúng định dạng email',
+    		'email.unique' => 'Email đã được sử dụng',
+    		'password.required' => 'Bạn chưa nhập mật khẩu',
+    		'password.min' => 'Mật khẩu có ít nhất 6 kí tự',
+    		'password.max' =>'Mật khẩu tối đa 32 kí tự',
         ];
     }
 }
