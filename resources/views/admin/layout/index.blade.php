@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
     <base href="{{asset('')}}">
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Quản lí khách sạn</title>
 
     <!-- Fontfaces CSS-->
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>

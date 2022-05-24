@@ -3,6 +3,9 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ImghotelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +40,42 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::post('edit/{id}',[UsersController::class,'postEdit']);
 		Route::get('delete/{id}',[UsersController::class,'delete']);
 	});
+	Route::group(['prefix'=>'room'], function(){
+		Route::get('show/{id}',[RoomController::class,'show']);
+
+		Route::get('list',[RoomController::class,'getlist']);
+		Route::get('add',[RoomController::class,'getAdd']);
+		Route::post('add',[RoomController::class,'postAdd']);
+		Route::get('edit/{id}',[RoomController::class,'getEdit']);
+		Route::post('edit/{id}',[RoomController::class,'postEdit']);
+		Route::get('delete/{id}',[RoomController::class,'delete']);
+	});
+	Route::group(['prefix'=>'img'], function(){
+		Route::get('list',[ImghotelController::class,'getlist']);
+		Route::get('add/{id}',[ImghotelController::class,'getAdd']);
+		Route::post('add/{id}',[ImghotelController::class,'postAdd']);
+		Route::get('edit/{id}',[ImghotelController::class,'getEdit']);
+		Route::post('edit/{id}',[ImghotelController::class,'postEdit']);
+		Route::get('delete/{id}',[ImghotelController::class,'delete']);
+	});
 });
+
+Route::group(['prefix'=>'/'], function(){
+	Route::get('/',[HomeController::class,'homepage'])->name('homepage');
+	Route::get('/tim-kiem',[HomeController::class,'search'])->name('search');
+	Route::group(['prefix'=>'cart'], function(){
+		Route::get('/',[BookController::class,'cart'])->name('cart');
+		//Route::get('add',[UsersController::class,'getAdd']);
+		// Route::post('add',[UsersController::class,'postAdd']);
+		// Route::get('edit/{id}',[UsersController::class,'getEdit']);
+		// Route::post('edit/{id}',[UsersController::class,'postEdit']);
+		// Route::get('delete/{id}',[UsersController::class,'delete']);
+	});
+	Route::group(['prefix'=>'room'], function(){
+		Route::get('/',[RoomController::class,'room'])->name('cart');
+	});
+});
+
 Route::get('dangnhap',[HomeController::class,'login'])->name("login");
 Route::get('dangky',[HomeController::class,'register'])->name("register");
 Route::post('postlogin',[HomeController::class,'postlogin'])->name("postlogin");

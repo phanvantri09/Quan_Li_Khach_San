@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ValidateRequest;
+use App\Http\Requests\CategoryR;
+
 use App\Models\CategoryModel;
 use Illuminate\Http\Request;
+
+use App\Models\RoomModel;
+use App\Models\ImghotelModel;
 
 class CategoryController extends Controller
 {
     //
+    
     public function getlist(){
         $category = CategoryModel::all();
         return view('admin.category.list', compact('category'));
@@ -17,7 +22,7 @@ class CategoryController extends Controller
         $category = CategoryModel::all();
         return view('admin.category.add',compact('category'));
     }
-    public function postAdd(ValidateRequest $request){
+    public function postAdd(CategoryR $request){
         $category = new CategoryModel();
         $category->name = $request->name;
         $category->save();
@@ -27,7 +32,7 @@ class CategoryController extends Controller
         $category = CategoryModel::find($id);
         return view('admin.category.edit',compact('category'));
     }
-    public function postEdit(ValidateRequest $request, $id){
+    public function postEdit(CategoryR $request, $id){
         $category = CategoryModel::find($id);
         $category->id = $request->id;
         $category->name = $request->name;
