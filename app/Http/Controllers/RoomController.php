@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\RoomModel;
 use App\Models\CategoryModel;
 use App\Models\ImghotelModel;
+use App\Http\Requests\RoomR;
+
+use App\Models\BookModel;
 class RoomController extends Controller
 {
     public function room(){
@@ -26,26 +29,41 @@ class RoomController extends Controller
         $category = RoomModel::all();
         return view('admin.room.add',compact('category'));
     }
-    public function postAdd(CategoryR $request){
-        $category = new CategoryModel();
-        $category->name = $request->name;
-        $category->save();
+    public function postAdd(Request $request){
+        $RoomModel = new RoomModel();
+        $RoomModel->id_category = $request->id_category;
+        $RoomModel->code = $request->code;
+        $RoomModel->status = 0;
+        $RoomModel->maxPeople = $request->maxPeople;
+        $RoomModel->minPeople = $request->minPeople;
+        $RoomModel->price = $request->price;
+        $RoomModel->amountBathroom = $request->amountBathroom;
+        $RoomModel->amountBed = $request->amountBed;
+        $RoomModel->decription = $request->decription;
+        $RoomModel->save();
         return redirect('admin/room/list')->with('thongbao','Thêm thành công');
     }
     public function getEdit($id){
-        $category = CategoryModel::find($id);
-        return view('admin.room.edit',compact('category'));
+        $room = RoomModel::find($id);
+        return view('admin.room.edit',compact('room'));
     }
-    public function postEdit(CategoryR $request, $id){
-        $category = CategoryModel::find($id);
-        $category->id = $request->id;
-        $category->name = $request->name;
-        $category->save();
+    public function postEdit(RoomR $request, $id){
+        $RoomModel = RoomModel::find($id);
+        $RoomModel->id_category = $request->id_category;
+        $RoomModel->code = $request->code;
+        $RoomModel->status = 0;
+        $RoomModel->maxPeople = $request->maxPeople;
+        $RoomModel->minPeople = $request->minPeople;
+        $RoomModel->price = $request->price;
+        $RoomModel->amountBathroom = $request->amountBathroom;
+        $RoomModel->amountBed = $request->amountBed;
+        $RoomModel->decription = $request->decription;
+        $RoomModel->save();
         return redirect('admin/room/list')->with('thongbao','Sửa thành công');
     }
     public function delete($id)
     {
-    	$category = CategoryModel::find($id);
+    	$category = RoomModel::find($id);
     	$category->delete();
     	return redirect('admin/room/list')->with('thongbao','Xóa thành công');
     }

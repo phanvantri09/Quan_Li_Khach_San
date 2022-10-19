@@ -37,10 +37,10 @@
                                 <i class="fas fa-user"></i>Người dùng</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="admin/user/list">Danh sách</a>
+                                    <a href="admin/users/list">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="admin/user/add">Thêm</a>
+                                    <a href="admin/users/add">Thêm</a>
                                 </li>
                             </ul>
                         </li>

@@ -43,7 +43,7 @@ Route::group(['prefix'=>'admin'], function(){
 	Route::group(['prefix'=>'room'], function(){
 		Route::get('show/{id}',[RoomController::class,'show']);
 
-		Route::get('list',[RoomController::class,'getlist']);
+		Route::get('list',[RoomController::class,'getlist'])->name("listroom");
 		Route::get('add',[RoomController::class,'getAdd']);
 		Route::post('add',[RoomController::class,'postAdd']);
 		Route::get('edit/{id}',[RoomController::class,'getEdit']);
@@ -63,13 +63,16 @@ Route::group(['prefix'=>'admin'], function(){
 Route::group(['prefix'=>'/'], function(){
 	Route::get('/',[HomeController::class,'homepage'])->name('homepage');
 	Route::get('/tim-kiem',[HomeController::class,'search'])->name('search');
-	Route::group(['prefix'=>'cart'], function(){
-		Route::get('/',[BookController::class,'cart'])->name('cart');
-		//Route::get('add',[UsersController::class,'getAdd']);
-		// Route::post('add',[UsersController::class,'postAdd']);
-		// Route::get('edit/{id}',[UsersController::class,'getEdit']);
-		// Route::post('edit/{id}',[UsersController::class,'postEdit']);
-		// Route::get('delete/{id}',[UsersController::class,'delete']);
+	Route::get('/loai-phong/{id}',[HomeController::class,'type'])->name('type');
+	Route::get('/phong/{id}',[HomeController::class,'viewroom'])->name('viewroom');
+	Route::get('/da-dat/{id}',[HomeController::class,'userbook'])->name('userbook');
+	Route::get('/calender',[HomeController::class,'index'])->name('calender');
+	Route::group(['prefix'=>'dat-phong'], function(){
+		Route::get('/{id}',[BookController::class,'book'])->name('book');
+		Route::post('/post/dat',[BookController::class,'bookpost'])->name('bookpost');
+		Route::get('/da-dat',[BookController::class,'checkout'])->name('checkout');
+		
+		Route::get('huy/{id}',[UsersController::class,'delete']);
 	});
 	Route::group(['prefix'=>'room'], function(){
 		Route::get('/',[RoomController::class,'room'])->name('cart');
@@ -81,3 +84,5 @@ Route::get('dangky',[HomeController::class,'register'])->name("register");
 Route::post('postlogin',[HomeController::class,'postlogin'])->name("postlogin");
 Route::post('postregister',[HomeController::class,'postregister'])->name("postregister");
 Route::get('dangxuat',[HomeController::class,'logout'])->name("logout");
+
+Route::post('fullcalenderAjax', [HomeController::class,'ajax']);

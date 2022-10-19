@@ -31,7 +31,7 @@
                                                 <label for="">Ngày đến</label>
                                                 <input type="date"  class="form-control" name="date_start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
                                             </div>
-                                        </div>
+                                        </div> 
                                         <div class="form-group">
                                             <div >
                                                 <label for="">Ngày đi</label>
@@ -61,7 +61,7 @@
                                 
                                 <div style="margin-top: 10px" class="col-md-6">
                                     <div class="book_tabel_item">
-                                        <a class="book_now_btn button_hover" href="#">Tìm Phòng</a>
+                                        <button class="book_now_btn button_hover" type="submit">Tìm Phòng</button>
                                     </div>
                                 </div>
                             </form>
@@ -91,14 +91,14 @@
                                 @break
                                 @endif
                             @endforeach
-                            <a href="" class="btn theme_btn button_hover">Đặt ngay</a>
+                            <a href="{{ route('viewroom', ['id'=>$ro->id]) }}" class="btn theme_btn button_hover">Xem ngay</a>
                         </div>
                         @foreach ($category as $ca)
                             @if ($ca->id == $ro->id_category)
-                                <a href="#"><h4 class="sec_h4">{{$ca->name}}</h4></a>
+                                <a href="#"><h4 class="sec_h4"> {{$ro->code}} - {{$ca->name  }}</h4></a>
                             @endif
                         @endforeach
-                        <h5>{{$ro->price}}<small></small></h5>
+                        <h5>{{$ro->price}} vnĐ<small></small></h5>
                     </div>
                 </div>
                 @endforeach

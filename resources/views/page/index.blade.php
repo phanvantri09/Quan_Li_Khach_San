@@ -18,6 +18,11 @@
         <!-- main css -->
         <link rel="stylesheet" href="homepage/css/style.css">
         <link rel="stylesheet" href="homepage/css/responsive.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     </head>
     <?php
     use App\Models\CategoryModel;
@@ -38,20 +43,21 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li> 
+                            <li class="nav-item active"><a class="nav-link" href="{{ route('homepage') }}">Trang chủ</a></li> 
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Loại Phòng</a>
                                 <ul class="dropdown-menu">
                                     @foreach ($category as $item)
-                                    <li class="nav-item"><a class="nav-link" href="blog.html">{{$item->name}}</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('type', ['id'=>$item->id]) }}">{{$item->name}}</a></li>
                                     @endforeach
                                 </ul>
                             </li> 
                             @auth
-                            <li class="nav-item"><a class="nav-link" href="elements.html">Đăng xuất</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('userbook', ['id'=>Auth::user()->id]) }}">Đã đặt</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">Đăng xuất</a></li>
                             @else
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Đăng nhập</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Đăng Ký</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Đăng nhập</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Đăng Ký</a></li>
                             @endauth
                             
                         </ul>
@@ -142,6 +148,24 @@
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script>
+            @if(Session::has('thongbao'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+                    toastr.success("{{ session('thongbao') }}");
+            @endif
+            @if(Session::has('error'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+                    toastr.error("{{ session('error') }}");
+            @endif
+        </script>
         <script src="homepage/js/jquery-3.2.1.min.js"></script>
         <script src="homepage/js/popper.js"></script>
         <script src="homepage/js/bootstrap.min.js"></script>

@@ -18,7 +18,7 @@
                             <div class="account-item clearfix js-item-menu">
                                 
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">Logout</a>
+                                    <a class="js-acc-btn" href="{{ route('logout') }}">Logout</a>
                                 </div>
                                 
                             </div>
@@ -39,7 +39,7 @@
                         <div class="overview-wrap">
                             <h2 class="title-1">Phòng trạng thái phòng</h2>
                             <button class="au-btn au-btn-icon au-btn--blue">
-                                <a href="admin/teacher/add"><i class="zmdi zmdi-plus"></i>add item</a></button>
+                                <a href="admin/room/add"><i class="zmdi zmdi-plus"></i>Thêm phòng</a></button>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,6 @@
                                             <a href="admin/room/show/{{$ro->id}}" class="text-secondary"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             <a href="admin/room/edit/{{$ro->id}}" class="text-success"><i class='far fa-edit'></i></a>
                                             <a href="admin/room/delete/{{$ro->id}}" class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                            
                                         </td>
                                 </tr>
                                     @endforeach
